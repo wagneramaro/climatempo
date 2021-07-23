@@ -1,4 +1,4 @@
-document.querySelector('.busca').addEventListener('submit', async (event) => {
+document.querySelector('.busca').addEventListener('submit', async(event) => {
     event.preventDefault();
 
     let input = document.querySelector('#searchInput').value;
@@ -13,12 +13,13 @@ document.querySelector('.busca').addEventListener('submit', async (event) => {
         let json = await results.json();
 
         if (json.cod === 200) {
-
+            console.log(json);
             showInfo({
                 name: json.name,
                 country: json.sys.country,
                 temp: json.main.temp,
-                tempIcon: json.whather[0].icon,
+                tempIcon: json.weather[0].icon,
+                tempDescript: json.weather[0].description,
                 windSpeed: json.wind.speed,
                 windAngle: json.wind.deg
             });
@@ -39,10 +40,12 @@ function showInfo(json) {
 
 
     document.querySelector('.titulo').innerHTML = `${json.name}, ${json.country}`;
-    document.querySelector('.tempInfo').innerHTML = `${json.temp} <sub>ºC</sub>`;
+    document.querySelector('.tempInfo').innerHTML = `${json.temp} <sup>ºC</sup>`;
+    document.querySelector('.tempDescript').innerHTML = `${json.tempDescript}`;
     document.querySelector('.ventoInfo').innerHTML = `${json.windSpeed} <spam>km</spam>`;
 
     document.querySelector('.temp img').setAttribute('src', `http://openweathermap.org/img/wn/${json.tempIcon}@2x.png`);
+
     document.querySelector('.ventoPonto').style.transform = `rotate(${json.windAngle-90}deg)`;
 
     document.querySelector('.resultado').style.display = 'block';
