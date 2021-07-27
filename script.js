@@ -9,7 +9,7 @@ document.querySelector('.busca').addEventListener('submit', async(event) => {
         showWarning('Carregando...');
         
         //Cadastre-se no site https://openweathermap.org e copie sua api. Geralmente ela demora 60 minutos para ficar ativa.
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(input)}&appid=SUA_API_AQUI&units=metric&lang=pt_br`;
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(input)}&appid=bee63dc6232d80fb8b2e3f0c94bdda05&units=metric&lang=pt_br`;
         let results = await fetch(url);
         let json = await results.json();
 
